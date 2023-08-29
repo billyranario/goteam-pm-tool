@@ -16,9 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')
                 ->constrained()
                 ->onDelete('cascade');
-            $table->string('title', 120)
+            $table->string('title')
                 ->index();
-            $table->text('description');
+            $table->text('description')
+                ->nullable();
             $table->dateTime('due_date');
             $table->unsignedSmallInteger('status')
                 ->default(0);

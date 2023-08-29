@@ -14,7 +14,6 @@ class BaseDto
      */
 
     private int $perPage = 10;
-    private int $page = 1;
     private string $orderBy = 'created_at';
     private string $orderDirection = 'desc';
     private ?string $searchKeyword = null;
@@ -26,14 +25,6 @@ class BaseDto
     public function setPerPage(int $perPage): void
     {
         $this->perPage = $perPage;
-    }
-
-    /**
-     * @param int $page
-     */
-    public function setPage(int $page): void
-    {
-        $this->page = $page;
     }
 
     /**
@@ -74,14 +65,6 @@ class BaseDto
     public function getPerPage(): int
     {
         return $this->perPage;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPage(): int
-    {
-        return $this->page;
     }
 
     /**

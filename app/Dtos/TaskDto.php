@@ -8,14 +8,14 @@ class TaskDto extends BaseDto
      * @var int $id
      * @var int $userId
      * @var string $title
-     * @var string $description
+     * @var string|null $description
      * @var int $status
      * @var string $dueDate
      */
     private int $id;
     private int $userId;
     private string $title;
-    private string $description;
+    private ?string $description;
     private int $status;
     private string $dueDate;
 
@@ -45,9 +45,9 @@ class TaskDto extends BaseDto
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description; 
     }
@@ -93,9 +93,9 @@ class TaskDto extends BaseDto
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description; 
     }
