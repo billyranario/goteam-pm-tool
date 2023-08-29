@@ -10,13 +10,15 @@ class BaseDto
      * @var string $orderBy
      * @var string $orderDirection
      * @var string $searchKeyword
+     * @var array $relations
      */
 
     private int $perPage = 10;
     private int $page = 1;
     private string $orderBy = 'created_at';
     private string $orderDirection = 'desc';
-    private ?string $searchKeyword;
+    private ?string $searchKeyword = null;
+    private array $relations = [];
 
     /**
      * @param int $perPage
@@ -59,6 +61,14 @@ class BaseDto
     }
 
     /**
+     * @param array $relations
+     */
+    public function setRelations(array $relations): void
+    {
+        $this->relations = $relations;
+    }
+
+    /**
      * @return int
      */
     public function getPerPage(): int
@@ -96,5 +106,13 @@ class BaseDto
     public function getSearchKeyword(): ?string
     {
         return $this->searchKeyword;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRelations(): array
+    {
+        return $this->relations;
     }
 }
