@@ -58,4 +58,19 @@ class AuthController extends Controller
 
         return ResponseHelper::resource(UserResource::class, $serviceResponse->getData());
     }
+
+    /**
+     * Logout user.
+     * @return JsonResponse
+     */
+    public function logout(): JsonResponse
+    {
+        $serviceResponse = $this->authService->logout();
+
+        if ($serviceResponse->isError()) {
+            return ResponseHelper::error($serviceResponse->getMessage());
+        }
+
+        return ResponseHelper::json($serviceResponse->getMessage());
+    }
 }

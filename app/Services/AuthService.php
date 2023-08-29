@@ -59,8 +59,21 @@ class AuthService
         }
 
         return ServiceResponse::success(
-            ServiceResponseMessages::LOGIN_SUCCESS, 
+            ServiceResponseMessages::LOGIN_SUCCESS,
             $user->createToken('auth-token')->plainTextToken
         );
+    }
+
+    /**
+     * @return ServiceResponse
+     */
+    public function logout(): ServiceResponse
+    {
+        try {
+            auth()->user()->currentAccessToken()->delete();
+            return ServiceResponse::success(ServiceResponseMessages::LOGOUT_SUCCESS, true);
+        } catch (\Throwable $th) {
+            return ServiceResponse::error(ServiceResponseMessages::LOGOUT_ERROR);
+        }
     }
 }
