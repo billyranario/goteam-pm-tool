@@ -26,9 +26,9 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Find user by id.
      * @param int $id
-     * @return User
+     * @return User|null
      */
-    public function findById(int $id): User
+    public function findById(int $id): ?User
     {
         return $this->user->find($id);
     }
@@ -36,9 +36,9 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Find by email.
      * @param string $email
-     * @return User
+     * @return User|null
      */
-    public function findByEmail(string $email): User
+    public function findByEmail(string $email): ?User
     {
         return $this->user->where('email', $email)->first();
     }
@@ -46,9 +46,9 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Create user.
      * @param array $data
-     * @return User
+     * @return User|bool
      */
-    public function create(array $data): User
+    public function create(array $data): User|bool
     {
         try {
             DB::beginTransaction();
@@ -67,9 +67,9 @@ class UserRepository implements UserRepositoryInterface
      * Update user.
      * @param array $data
      * @param int $id
-     * @return User
+     * @return User|bool
      */
-    public function update(array $data, int $id): User
+    public function update(array $data, int $id): User|bool
     {
         try {
             DB::beginTransaction();
@@ -88,9 +88,9 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Delete user.
      * @param int $id
-     * @return bool
+     * @return bool|null
      */
-    public function delete(int $id): bool
+    public function delete(int $id): ?bool
     {
         $user = $this->findById($id);
         return $user->delete();

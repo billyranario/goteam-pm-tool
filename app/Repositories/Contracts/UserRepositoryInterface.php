@@ -10,40 +10,40 @@ interface UserRepositoryInterface
      * Find a user by id
      *
      * @param int $id
-     * @return User
+     * @return User|null
      */
-    public function findById(int $id): User;
+    public function findById(int $id): ?User;
 
     /**
      * Find a user by email address
      *
      * @param string $email
-     * @return User
+     * @return User|null
      */
-    public function findByEmail(string $email): User;
+    public function findByEmail(string $email): ?User;
 
     /**
      * Create a new user
      *
      * @param array $data
-     * @return User
+     * @return User|bool
      */
-    public function create(array $data): User;
+    public function create(array $data): User|bool;
 
     /**
      * Update an user
      *
      * @param array $data
      * @param int $id
-     * @return User
+     * @return User|bool
      */
-    public function update(array $data, int $id): User;
+    public function update(array $data, int $id): User|bool;
 
     /**
      * Delete a user by id
      *
      * @param int $id
-     * @return bool
+     * @return bool|null
      */
-    public function delete(int $id): bool;
+    public function delete(int $id): bool|null;
 }

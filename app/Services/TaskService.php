@@ -6,7 +6,6 @@ use App\Constants\ServiceResponseMessages;
 use App\Core\ServiceResponse;
 use App\Dtos\TaskDto;
 use App\Repositories\Eloquent\TaskRepository;
-use Illuminate\Support\Facades\Log;
 
 class TaskService
 {

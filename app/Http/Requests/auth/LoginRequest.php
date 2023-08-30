@@ -27,6 +27,7 @@ class LoginRequest extends BaseRequest
             'password' => [
                 'required',
                 'min:8',
+                'max:16',
                 'regex:/[a-z]/',
                 'regex:/[A-Z]/',
                 'regex:/[0-9]/',

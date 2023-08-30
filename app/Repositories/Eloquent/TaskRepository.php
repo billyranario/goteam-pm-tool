@@ -60,9 +60,9 @@ class TaskRepository implements TaskRepositoryInterface
     /**
      * Create task.
      * @param array $data
-     * @return Task
+     * @return Task|bool
      */
-    public function create(array $data): Task
+    public function create(array $data): Task|bool
     {
         try {
             DB::beginTransaction();
