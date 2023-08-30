@@ -25,7 +25,6 @@ class UserController extends Controller
 
     /**
      * Display the specified resource.
-     * @param TaskRequest $request
      * @param string $id
      * @return JsonResponse|UserResource
      */
