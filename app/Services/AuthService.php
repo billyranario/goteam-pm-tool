@@ -51,11 +51,10 @@ class AuthService
     {
         $user = $this->userRepository->findByEmail($userDto->getEmail());
 
-        if (!$user) {
-            return ServiceResponse::error(ServiceResponseMessages::EMAIL_NOT_FOUND);
-        }
         if (!Hash::check($userDto->getPassword(), $user->password)) {
-            return ServiceResponse::error(ServiceResponseMessages::INCORRECT_PASSWORD);
+            return ServiceResponse::error(ServiceResponseMessages::INCORRECT_PASSWORD, [
+                'errors' => ['password' => [ServiceResponseMessages::INCORRECT_PASSWORD]]
+            ]);
         }
 
         return ServiceResponse::success(

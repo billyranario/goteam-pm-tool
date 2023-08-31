@@ -10,6 +10,7 @@ use App\Http\Requests\auth\{
 use App\Http\Resources\UserResource;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class AuthController extends Controller
 {
@@ -37,7 +38,7 @@ class AuthController extends Controller
         $serviceResponse = $this->authService->login($request->toDto());
 
         if ($serviceResponse->isError()) {
-            return ResponseHelper::error($serviceResponse->getMessage());
+            return ResponseHelper::json($serviceResponse->getData(), SymfonyResponse::HTTP_BAD_REQUEST);
         }
 
         return ResponseHelper::json($serviceResponse->getData());

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Constants\Model\TaskConstants;
 use App\Constants\ServiceResponseMessages;
 use App\Core\ServiceResponse;
 use App\Dtos\TaskDto;
@@ -109,5 +110,14 @@ class TaskService
         }
 
         return ServiceResponse::error(ServiceResponseMessages::DELETE_TASK_ERROR);
+    }
+
+    /**
+     * Get Status List
+     * @return ServiceResponse
+     */
+    public function getTaskStatuses(): ServiceResponse
+    {
+        return ServiceResponse::success(null, TaskConstants::STATUSES);
     }
 }

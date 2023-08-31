@@ -40,6 +40,7 @@ class TaskRepository implements TaskRepositoryInterface
                     return $taskSearchQuery->where('title', 'like', "%{$search}%");
                 });
             })
+            ->where('user_id', auth()->id())
             ->orderBy($params['orderBy'], $params['orderDirection'])
             ->paginate($params['perPage']);
     }

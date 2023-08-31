@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Core\ResponseHelper;
 use App\Http\Requests\task\{
     TaskRequest,
-    TaskCreateUpdateRequest
+    TaskCreateRequest,
+    TaskUpdateRequest,
 };
 use App\Http\Resources\TaskResource;
 use App\Services\TaskService;
@@ -46,10 +47,10 @@ class TaskController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param TaskCreateUpdateRequest $request
+     * @param TaskCreateRequest $request
      * @return JsonResponse|TaskResource
      */
-    public function store(TaskCreateUpdateRequest $request): JsonResponse|TaskResource
+    public function store(TaskCreateRequest $request): JsonResponse|TaskResource
     {
         $serviceResponse = $this->taskService->create($request->toDto());
 
@@ -82,11 +83,11 @@ class TaskController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param TaskCreateUpdateRequest $request
+     * @param TaskUpdateRequest $request
      * @param string $id
      * @return JsonResponse|TaskResource
      */
-    public function update(TaskCreateUpdateRequest $request, string $id)
+    public function update(TaskUpdateRequest $request, string $id)
     {
         $taskDto = $request->toDto();
         $taskDto->setId((int) $id);
@@ -115,5 +116,14 @@ class TaskController extends Controller
         }
 
         return ResponseHelper::resource(TaskResource::class, $serviceResponse->getData());
+    }
+
+    /**
+     * Get Status List.
+     */
+    public function getTaskStatusList()
+    {
+        $serviceResponse = $this->taskService->getTaskStatuses();
+        return ResponseHelper::json($serviceResponse->getData());
     }
 }

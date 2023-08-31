@@ -5,7 +5,7 @@ namespace App\Http\Requests\task;
 use App\Http\Requests\BaseRequest;
 use App\Traits\Requests\TaskRequestDtoTrait;
 
-class TaskCreateUpdateRequest extends BaseRequest
+class TaskCreateRequest extends BaseRequest
 {
     use TaskRequestDtoTrait;
 
@@ -27,7 +27,7 @@ class TaskCreateUpdateRequest extends BaseRequest
         return [
             'title' => ['required'],
             'description' => ['nullable'],
-            'dueDate' => ['required', 'date'],
+            'dueDate' => ['required', 'date', 'after_or_equal:' . now()->format('Y-m-d')],
             'status' => ['required', 'integer'],
         ];
     }
